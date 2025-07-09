@@ -2,7 +2,7 @@ import './style.css'
 
 document.querySelector('#app').innerHTML = `
   <div>
-    <h1>Hello Vite!</h1>
+    <h1>Hello Autocue</h1>
     <div style="margin:2em auto; max-width:1200px;">
       <textarea id="teleprompter-input" style="width:100%; min-height:80px; font-size:1.2em; margin-bottom:1em;">Enter your teleprompter text here...</textarea>
       <button id="start-teleprompter">Start Teleprompter</button>
@@ -78,4 +78,13 @@ teleprompterInput.addEventListener('keydown', (e) => {
     // Prevent the global handler from pausing/resuming
     e.stopPropagation();
   }
+});
+
+// Placeholder clear-on-focus for textarea
+teleprompterInput.addEventListener('focus', function handler() {
+  if (teleprompterInput.value === 'Enter your teleprompter text here...') {
+    teleprompterInput.value = '';
+  }
+  // Remove this handler after first use
+  teleprompterInput.removeEventListener('focus', handler);
 });
